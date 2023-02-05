@@ -2,15 +2,16 @@ Bootstrap: docker
 From: ubuntu:20.04
 
 %post
-    # Install Python 3 and other dependencies required for CUDA and PyTorch
+    # Install Python 3 and other dependencies required for CUDA, PyTorch nad NerfStudio
     apt-get -y update && apt -y upgrade
-    apt-get -y install python3 python3-pip python3-venv git gcc wget
+    DEBIAN_FRONTEND=noninteractive TZ="Etc/UTC" apt-get install -y --no-install-recommends tzdata
+    apt-get -y install python3 python3-pip python3-venv git gcc wget ffmpeg
 
     # Install CUDA 11.3
     apt-get -y install linux-headers-$(uname -r)
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
     dpkg -i cuda-keyring_1.0-1_all.deb
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
+
     apt-get update
     apt-get -y install cuda-11-3 nvidia-gds
     export PATH=/usr/local/cuda-11.3/bin${PATH:+:${PATH}}
@@ -18,7 +19,9 @@ From: ubuntu:20.04
     export CUDA_HOME=/usr/local/cuda-11.3/
 
     # Create a virtual Python environment
-    cd /root
+    mkdir -p /opt/nerfstudio-nu-papers
+    chmod -R 755 /opt/nerfstudio-nu-papers
+    cd /opt/nerfstudio-nu-papers
     python3 -m venv venv
     . venv/bin/activate
     python3 -m pip install --upgrade pip
@@ -31,7 +34,8 @@ From: ubuntu:20.04
     pip install nerfstudio
 
 %runscript
-    cd /root
+    # Nerfstudio dependencies are in a Python virtual environment.
+    cd /opt/nerfstudio-nu-papers
     . venv/bin/activate
     /bin/bash
 
