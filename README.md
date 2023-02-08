@@ -10,7 +10,11 @@ There's an already built Singularity container stored in the Cedar cluster. This
 
 The pre-built image is located at: `/project/6002421/wribas`. The image file is named `nerfstudio.sif`.
 
-### Running the nerfstudio.sif container on Compute Canada
+### Running the nerfstudio container on Compute Canada
+
+#TODO
+
+### Running the nerfstudio container on Northeastern Dicovery
 
 #TODO
 
