@@ -4,6 +4,17 @@ This repository contains the [Singularity file definitions](https://docs.sylabs.
 
 The goal is to provide an isolated environment that you can use Nerfstudio to render NeRF's from images. Nerfstudio will also allow you to render point-clouds and videos from the trained and rendered NeRF's.
 
+- [Nerf Studio Singularity Containter and Pipeline](#nerf-studio-singularity-containter-and-pipeline)
+  - [Getting Started](#getting-started)
+    - [Gotchas and other things you should be aware of](#gotchas-and-other-things-you-should-be-aware-of)
+    - [Running the nerfstudio container on Compute Canada](#running-the-nerfstudio-container-on-compute-canada)
+    - [Running the nerfstudio container on Northeastern Dicovery](#running-the-nerfstudio-container-on-northeastern-dicovery)
+    - [Building the image](#building-the-image)
+    - [Running SBATCH jobs](#running-sbatch-jobs)
+      - [Running `nerfstudio-colmap-process.sh`](#running-nerfstudio-colmap-processsh)
+      - [Running `nerfstudio-train.sh`](#running-nerfstudio-trainsh)
+  - [Credits](#credits)
+
 ## Getting Started
 
 There's an already built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
@@ -120,6 +131,24 @@ sudo singularity build --nv nerfstudio-cuda-11-3.sif nerfstudio.def
 It's mandatory you run this command as `sudo`, in a computer you have privileged access. Especially when you're going to run the container on Compute Canada, where you don't have `sudo` access. If you don't use `sudo` during the build, your container won't work properly, or may not even build.
 
 The resulting image will have some gigabytes of size. You may transfer this image to Compute Canada or Discovery using the `scp` command. Be aware it may take a while for the transfer to complete depending on your internet connection.
+
+### Running SBATCH jobs
+
+We've provided two different shell pipeline scripts to submit batch jobs:
+* nerfstudio-colmap-process.sh: process raw images into a COLMAP structure using nerfstudio processing CLI.
+* nerfstudio-train.sh: train a NeRF model from COLMAP structured images;
+
+#### Running `nerfstudio-colmap-process.sh`
+
+```bash
+sbatch ./nerfstudio-colmap-process.sh --images /path/to/read/raw/images --output /path/to/save/colmap
+```
+
+#### Running `nerfstudio-train.sh`
+
+```bash
+sbatch ./nerfstudio-train.sh --data /path/to/colmap/images/dir --output /path/to/save/nerf/output
+```
 
 ## Credits
 
