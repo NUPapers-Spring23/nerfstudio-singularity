@@ -1,10 +1,9 @@
 #!/bin/bash
-
 #SBATCH --account=def-ycoady
 #SBATCH --mem=32G
 #SBATCH --cpu-per-task=12
 #SBATCH --gpus-per-node=t4:1
-#SBATCH --time=0:02:59
+#SBATCH --time=2:59:0
 #SBATCH --mail-user=ribas.w@northeastern.edu
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1

@@ -1,9 +1,8 @@
 #!/bin/bash
-
 #SBATCH --account=def-ycoady
 #SBATCH --mem=64G
 #SBATCH --cpus-per-task=12
-#SBATCH --time=0:02:59
+#SBATCH --time=2:59:0
 #SBATCH --mail-user=ribas.w@northeastern.edu
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
@@ -71,7 +70,7 @@ fi
 
 if [ -z "$nerfstudio_container" ]
 then
-    nerfstudio_container = "/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif"
+    nerfstudio_container="/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif"
 
     if [ ! -e "$nerfstudio_container" ]
     then
@@ -81,4 +80,4 @@ fi
 
 module load singularity
 
-singularity exec --bind $output_dir:/opt/nerfstudio-nu-papers/data --bind $images_path:/opt/nerfstudio-nu-papers/images ${nerfstudio_container} bash -c "cd /opt/nerfstudio-nu-papers && . venv/bin/activate && ns-process-data images --data images/ --output-dir data/ --no-gpu"
+singularity exec --bind $output_path:/opt/nerfstudio-nu-papers/data --bind $images_path:/opt/nerfstudio-nu-papers/images ${nerfstudio_container} bash -c "cd /opt/nerfstudio-nu-papers && . venv/bin/activate && ns-process-data images --data images/ --output-dir data/ --no-gpu"
