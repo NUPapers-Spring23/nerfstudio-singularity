@@ -9,8 +9,8 @@ The goal is to provide an isolated environment that you can use Nerfstudio to re
 There's an already built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
 
 The containers can be found at:
-* Compute Canada: `/home/wribas/projects/def-ycoady/wribas/nerfstudio`
-* Northeastern Discovery: `/scratch/ribas.w/nerfstudio`
+* Compute Canada: `/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif`
+* Northeastern Discovery: `/scratch/ribas.w/nerfstudio/nerfstudio-cuda-11-3.sif`
 
 Those directories have the permissions set in a way you can read the container file and possibly run it. However, if you want to write data files or outputs for NeRF rendering, I'd suggest you copy the container file to your own folder.
 
