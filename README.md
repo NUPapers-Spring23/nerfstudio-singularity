@@ -13,6 +13,7 @@ The goal is to provide an isolated environment that you can use Nerfstudio to re
     - [Running SBATCH jobs](#running-sbatch-jobs)
       - [Running `nerfstudio-colmap-process.sh`](#running-nerfstudio-colmap-processsh)
       - [Running `nerfstudio-train.sh`](#running-nerfstudio-trainsh)
+    - [Rendering the trained mode](#rendering-the-trained-mode)
   - [Credits](#credits)
 
 ## Getting Started
@@ -149,6 +150,29 @@ sbatch ./nerfstudio-colmap-process.sh --images /path/to/read/raw/images --output
 ```bash
 sbatch ./nerfstudio-train.sh --data /path/to/colmap/images/dir --output /path/to/save/nerf/output
 ```
+
+### Rendering the trained mode
+
+Once you have a trained model, you can export the results to images or videos. More information on how to do it [here](https://docs.nerf.studio/en/latest/reference/cli/ns_render.html).
+
+Below you'll find the example of a 10 seconds video render from a trained model.
+
+Directories you'll need to bind/created:
+- renders: the directory to output the rendered video
+- outputs: the directory where the trained model is located
+- data: the directory where the COLMAP data is located at (specially the transforms.json file)
+
+```bash
+singularity run --nv --bind renders/:/opt/nerfstudio-nu-papers/renders --bind outputs/:/opt/nerfstudio-nu-papers/outputs --bind data/nerfstudio/poster/:/opt/nerfstudio-nu-papers/data nerfstudio-cuda-11-3.sif
+```
+
+From within the singularity container, run:
+
+```bash
+ns-render --load-config outputs/data/nerfacto/2023-02-10_232507/config.yml --output-path renders/nerfstudio-poster-sample-camera-path.mp4 --seconds 10 --output-format video --camera-path-filename data/base_cam.json
+```
+
+Be aware that the above commands are just examples and the file/directory paths may not (and probably won't) match what you need.
 
 ## Credits
 
