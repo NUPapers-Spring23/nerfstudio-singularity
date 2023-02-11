@@ -36,6 +36,9 @@ From: ubuntu:20.04
     pip install nerfstudio
 
 %runscript
+    # Ensure Python requests knows where to read roo CA certificates from
+    export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
     # Nerfstudio dependencies are in a Python virtual environment.
     cd /opt/nerfstudio-nu-papers
     . venv/bin/activate
