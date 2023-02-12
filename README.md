@@ -1,14 +1,14 @@
-# Nerf Studio Singularity Containter and Pipeline
+# Nerf Studio Singularity Container and Pipeline
 
 This repository contains the [Singularity file definitions](https://docs.sylabs.io/guides/3.8/user-guide/definition_files.html) and all supporting scripts to build a NeRF rendering pipeline on [Compute Canada](https://docs.alliancecan.ca/wiki/Technical_documentation), leveraging Singularity [containers](https://docs.sylabs.io/guides/3.8/user-guide/index.html).
 
-The goal is to provide an isolated environment that you can use Nerfstudio to render NeRF's from images. Nerfstudio will also allow you to render point-clouds and videos from the trained and rendered NeRF's.
+The goal is to provide an isolated environment where Nerfstudio can be used to render NeRFs from images. Nerfstudio will also allow you to render point clouds and videos from the trained and rendered NeRFs.
 
-- [Nerf Studio Singularity Containter and Pipeline](#nerf-studio-singularity-containter-and-pipeline)
+- [Nerf Studio Singularity Container and Pipeline](#nerf-studio-singularity-container-and-pipeline)
   - [Getting Started](#getting-started)
     - [Gotchas and other things you should be aware of](#gotchas-and-other-things-you-should-be-aware-of)
     - [Running the nerfstudio container on Compute Canada](#running-the-nerfstudio-container-on-compute-canada)
-    - [Running the nerfstudio container on Northeastern Dicovery](#running-the-nerfstudio-container-on-northeastern-dicovery)
+    - [Running the nerfstudio container on Northeastern Discovery](#running-the-nerfstudio-container-on-northeastern-discovery)
     - [Building the image](#building-the-image)
     - [Running SBATCH jobs](#running-sbatch-jobs)
       - [Running `nerfstudio-colmap-process.sh`](#running-nerfstudio-colmap-processsh)
@@ -18,13 +18,13 @@ The goal is to provide an isolated environment that you can use Nerfstudio to re
 
 ## Getting Started
 
-There's an already built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
+There's an already built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on the Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
 
 The containers can be found at:
 * Compute Canada: `/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif`
 * Northeastern Discovery: `/scratch/ribas.w/nerfstudio/nerfstudio-cuda-11-3.sif`
 
-Those directories have the permissions set in a way you can read the container file and possibly run it. However, if you want to write data files or outputs for NeRF rendering, I'd suggest you copy the container file to your own folder.
+Those directories have the permissions set in a way you can read the container file and possibly run it. However, if you want to write data files or outputs for NeRF rendering, you could copy the container file to your folder.
 
 ### Gotchas and other things you should be aware of
 
@@ -39,7 +39,7 @@ Those directories have the permissions set in a way you can read the container f
     scp alexnet-owt-7be5be79.pth wribas@graham.computecanada.ca:/home/wribas/.cache/torch/hub/checkpoints/alexnet-owt-7be5be79.pth
     ```
 
-* GPU version: if you get an error like the one below this might mean on of two things. Either you're running nerfstudio on a GPU that's not compatible with the `tiny-cuda-nn` version we use OR that the CUDA drivers available are too old (< 11.3) or the drivers version mismatch with what the GPU is using. To solve this, try to use the Nvidia T4 GPU or a newer version. We have tested many GPU's (e.g. p100, p100l, v100) and just got Nvidia T4 to work on Compute Canada.
+* GPU version: if you get an error like the one below this might mean one of two things. Either you're running nerfstudio on a GPU that's not compatible with the `tiny-cuda-nn` version we use OR the CUDA drivers available are too old (< 11.3) or the driver's version mismatch with what the GPU is using. To solve this, try to use the Nvidia T4 GPU or a newer version. We have tested many GPUs (e.g. p100, p100l, v100) and just got Nvidia T4 to work on Compute Canada.
 
     ```txt
     OSError: Could not find compatible tinycudann extension for compute capability 35.
@@ -70,13 +70,13 @@ Those directories have the permissions set in a way you can read the container f
 
 ### Running the nerfstudio container on Compute Canada
 
-SSH into the Graham cluster and start an interactive job. An example of the `salloc` command is given below. You may tweak the amount of resources for the job depending of the size of the project you'll be rendering.
+SSH into the Graham cluster and start an interactive job. An example of the `salloc` command is given below. You may tweak the number of resources for the job depending on the size of the project you'll be rendering.
 
 ```bash
 salloc --time=1:0:0 --cpus-per-task=4 --mem=12G --gpus-per-node=t4:1 --account=<replace_me>
 ```
 
-As mentioned in the [gotchas](#gotchas-and-other-things-you-should-be-aware-of), the type of NVIDIA GPU to use is very important. Make sure you're using the most recent GPU possible, as it will provide the right compute capability for `tiny-cuda-nn`. For Compute Canada, we've tested nerfstudio with T4 GPU's.
+As mentioned in the [gotchas](#gotchas-and-other-things-you-should-be-aware-of), the type of NVIDIA GPU to use is very important. Make sure you're using the most recent GPU possible, as it will provide the right computing capability for `tiny-cuda-nn`. For Compute Canada, we've tested nerfstudio with T4 GPUs.
 
 Once you get the job allocation granted, navigate to the directory where the nerfstudio container is located at. Then run:
 
@@ -93,15 +93,15 @@ singularity run --nv --bind data/:/opt/nerfstudio-nu-papers/data --bind outputs/
 
 You should now be presented with a bash terminal where you can run the nerfstudio CLI commands. More about nerfstudio [here](https://docs.nerf.studio/en/latest/quickstart/first_nerf.html).
 
-### Running the nerfstudio container on Northeastern Dicovery
+### Running the nerfstudio container on Northeastern Discovery
 
-SSH into the Discovery cluster and start an interactive job. An example of the `srun` command is given below. You may tweak the amount of resources for the job depending of the size of the project you'll be rendering.
+SSH into the Discovery cluster and start an interactive job. An example of the `srun` command is given below. You may tweak the number of resources for the job depending on the size of the project you'll be rendering.
 
 ```bash
 srun --partition=gpu --nodes=1 --pty --gres=gpu:t4:1 --ntasks=2 --mem=4GB --time=01:00:00 /bin/bash
 ```
 
-As mentioned in the [gotchas](#gotchas-and-other-things-you-should-be-aware-of), the type of NVIDIA GPU to use is very important. Make sure you're using the most recent GPU possible, as it will provide the right compute capability for `tiny-cuda-nn`. For Discovery, we've tested nerfstudio with T4 GPU's.
+As mentioned in the [gotchas](#gotchas-and-other-things-you-should-be-aware-of), the type of NVIDIA GPU to use is very important. Make sure you're using the most recent GPU possible, as it will provide the right computing capability for `tiny-cuda-nn`. For Discovery, we've tested nerfstudio with T4 GPUs.
 
 Once you get the job allocation granted, navigate to the directory where the nerfstudio container is located at. Then run:
 
@@ -119,7 +119,7 @@ singularity run --nv --bind data/:/opt/nerfstudio-nu-papers/data --bind outputs/
 ### Building the image
 
 In order to build nerfstudio in a Singularity container you'll need:
-- [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/contents.html) and Nvidia drivers installed on the host machine. For consequence, you're also required to have a Nvidia GPU on the host machine, otherwise you won't be able to install the drivers.
+- [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/contents.html) and Nvidia drivers are installed on the host machine. As a consequence, you're also required to have an Nvidia GPU on the host machine, otherwise, you won't be able to install the drivers.
 - A fairly recent Nvidia GPU, that supports at least the Turing architecture or more recent. For context, we've successfully built the container using an RTX 2060.
 - Singularity installed on the host machined. Instructions [here](https://docs.sylabs.io/guides/3.8/user-guide/introduction.html). We've tested and validated the definition file with Singularity version 3.8.4.
 
@@ -155,12 +155,12 @@ sbatch ./nerfstudio-train.sh --data /path/to/colmap/images/dir --output /path/to
 
 Once you have a trained model, you can export the results to images or videos. More information on how to do it [here](https://docs.nerf.studio/en/latest/reference/cli/ns_render.html).
 
-Below you'll find the example of a 10 seconds video render from a trained model.
+Below you'll find an example of a 10 seconds video render from a trained model.
 
 Directories you'll need to bind/created:
 - renders: the directory to output the rendered video
 - outputs: the directory where the trained model is located
-- data: the directory where the COLMAP data is located at (specially the transforms.json file)
+- data: the directory where the COLMAP data is located (especially the transforms.json file)
 
 ```bash
 singularity run --nv --bind renders/:/opt/nerfstudio-nu-papers/renders --bind outputs/:/opt/nerfstudio-nu-papers/outputs --bind data/nerfstudio/poster/:/opt/nerfstudio-nu-papers/data nerfstudio-cuda-11-3.sif
@@ -176,4 +176,6 @@ Be aware that the above commands are just examples and the file/directory paths 
 
 ## Credits
 
-Authored by Weder Ribas <me@wederribas.com>
+Authored by Weder Ribas <me@wederribas.com>, under the advisory of Dr. Derek Jacoby and Dr. Yvonne Coady.
+
+This project was developed during the Spring semester of CS7675 (Master's Research) at Northeastern University.
