@@ -2,7 +2,7 @@
 
 This file contains the logs and batch job stats for the COLMAP processing done on Compute Canada using nerfstudio COLMAP pipeline.
 
-Each section is titled by the folder name where the images originate from.
+Each section is titled by the folder name where the images originated from.
 
 ## /scratch/derekja/ECS/DJI_202301291342_001_uvicmapper/
 
