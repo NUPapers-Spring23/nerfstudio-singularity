@@ -4,7 +4,7 @@ This file contains the logs and batch job stats for the NeRF model training on C
 
 Each section is titled by the folder name where the trained model is stored at.
 
-## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_001_uvicmapper/outputs/data/nerfacto/2023-02-12_151225/
+## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_001_uvicmapper/outputs/
 
 * Log file: /scratch/wribas/nerfstudio/nerfstudio_train_model_3636336.out
 * Nerfstudio logs (partial):
@@ -49,3 +49,19 @@ Each section is titled by the folder name where the trained model is stored at.
     Memory Utilized: 6.39 GB
     Memory Efficiency: 19.96% of 32.00 GB
     ```
+
+## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_002_uvicmapper/outputs/
+
+* Log file: /scratch/wribas/nerfstudio/nerfstudio_train_model_3686926.out
+* Nerfstudio logs (partial):
+    rendering in progress...
+* Job stats:
+    rendering in progress...
+
+## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_005_Buildings_up_close/outputs/
+
+* Log file: waiting for job to start...
+* Nerfstudio logs (partial):
+    rendering in progress...
+* Job stats:
+    rendering in progress...
