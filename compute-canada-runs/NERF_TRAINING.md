@@ -96,6 +96,14 @@ Each section is titled by the folder name where the trained model is stored at.
     Memory Efficiency: 41.71% of 32.00 GB
     ```
 
+## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_003_Extra_obliques_and_UVIC_footage/outputs/
+
+* Log file: waiting for job to start... job id: 3720629
+* Nerfstudio logs (partial):
+    rendering in progress...
+* Job stats:
+    rendering in progress...
+
 ## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_005_Buildings_up_close/outputs/
 
 * Log file: waiting for job to start... job id: 3701054
