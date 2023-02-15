@@ -98,7 +98,7 @@ Each section is titled by the folder name where the trained model is stored at.
 
 ## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_003_Extra_obliques_and_UVIC_footage/outputs/
 
-* Log file: waiting for job to start... job id: 3720629
+* Log file: waiting for job to start... job id: 3723127
 * Nerfstudio logs (partial):
     rendering in progress...
 * Job stats:
