@@ -143,11 +143,49 @@ Each section is titled by the folder name where the trained model is stored at.
     ```
 ## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_004_uvicOblique/outputs/
 
-* Log file: nerfstudio_train_model_3760214.out (training in progress)
+* Log file: nerfstudio_train_model_3760214.out
 * Nerfstudio logs (partial):
-    training in progress...
+    ```bash
+    Setting up training dataset...
+    Caching all 283 images.
+
+    Setting up evaluation dataset...
+    Caching all 31 images.
+
+    No checkpoints to load, training from scratch
+    [03:23:33] Printing max of 10 lines. Set flag --logging.local-writer.max-log-size=0 to disable line        writer.py:388
+               wrapping.
+    Step (% Done)
+    --------------------
+    29910 (99.70%)      42.917 ms            3 s, 862.488 ms      97.98 K
+    29920 (99.73%)      41.756 ms            3 s, 340.469 ms      100.48 K
+    29930 (99.77%)      41.983 ms            2 s, 938.837 ms      100.69 K
+    29940 (99.80%)      40.468 ms            2 s, 428.064 ms      103.92 K
+    29950 (99.83%)      40.694 ms            2 s, 34.698 ms       103.26 K
+    29960 (99.87%)      44.176 ms            1 s, 767.052 ms      96.05 K
+    29970 (99.90%)      44.600 ms            1 s, 337.992 ms      94.33 K
+    29980 (99.93%)      44.887 ms            897.737 ms           94.10 K
+    29990 (99.97%)      51.658 ms            516.584 ms           84.41 K
+    29999 (100.00%)
+    ----------------------------------------------------------------------------------------------------
+    Viewer at: https://viewer.nerf.studio/versions/23-01-25-0/?websocket_url=ws://localhost:7007
+    ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                                              🎉 🎉 🎉 Training Finished 🎉 🎉 🎉
+    ```
 * Job stats:
-    training in progress...
+    ```txt
+    Job ID: 3760214
+    Cluster: graham
+    User/Group: wribas/wribas
+    State: CANCELLED (exit code 0)
+    Nodes: 1
+    Cores per node: 12
+    CPU Utilized: 10:43:14
+    CPU Efficiency: 11.53% of 3-21:01:00 core-walltime
+    Job Wall-clock time: 07:45:05
+    Memory Utilized: 14.46 GB
+    Memory Efficiency: 45.19% of 32.00 GB
+    ```
 
 ## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_005_Buildings_up_close/outputs/
 
