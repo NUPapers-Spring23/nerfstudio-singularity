@@ -103,6 +103,39 @@ Each section is titled by the folder name where the images originated from.
     Memory Efficiency: 30.13% of 64.00 GB
     ```
 
+## /scratch/derekja/ECS/DJI_202301291342_004_uvicOblique/
+
+* Log file: nerfstudio_colmap_59702654.out
+* Nerfstudio logs:
+    ```bash
+    [22:02:47] 🎉 Done copying images.                                                             process_data_utils.py:179
+    [22:17:02] 🎉 Done downscaling images.                                                         process_data_utils.py:292
+    [22:28:47] 🎉 Done extracting COLMAP features.                                                       colmap_utils.py:536
+    [11:43:58] 🎉 Done matching COLMAP features.                                                         colmap_utils.py:550
+    [12:11:35] 🎉 Done COLMAP bundle adjustment.                                                         colmap_utils.py:572
+    [12:13:19] 🎉 Done refining intrinsics.                                                              colmap_utils.py:581
+    ────────────────────────────────────────────── 🎉 🎉 🎉 All DONE 🎉 🎉 🎉 ──────────────────────────────────────────────
+                                                    Starting with 314 images
+                                           We downsampled the images by 2x, 4x and 8x
+                                                   Colmap matched 314 images
+                                          COLMAP found poses for all images, CONGRATS!
+    ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    ```
+* Job stats:
+    ```txt
+    Job ID: 59702654
+    Cluster: cedar
+    User/Group: wribas/wribas
+    State: COMPLETED (exit code 0)
+    Nodes: 1
+    Cores per node: 48
+    CPU Utilized: 17-20:12:34
+    CPU Efficiency: 62.48% of 28-13:22:24 core-walltime
+    Job Wall-clock time: 14:16:43
+    Memory Utilized: 28.39 GB
+    Memory Efficiency: 44.36% of 64.00 GB
+    ```
+
 ## /scratch/derekja/ECS/DJI_202301291342_00_Buildings_up_close/
 
 * Log file: nerfstudio_colmap_59695702.out
