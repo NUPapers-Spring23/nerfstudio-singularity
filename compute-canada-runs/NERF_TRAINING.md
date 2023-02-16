@@ -141,6 +141,13 @@ Each section is titled by the folder name where the trained model is stored at.
     Memory Utilized: 13.07 GB
     Memory Efficiency: 40.85% of 32.00 GB
     ```
+## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_004_uvicOblique/outputs/
+
+* Log file: nerfstudio_train_model_3760214.out (training in progress)
+* Nerfstudio logs (partial):
+    training in progress...
+* Job stats:
+    training in progress...
 
 ## /scratch/wribas/nerfstudio/uvic-data/DJI_202301291342_005_Buildings_up_close/outputs/
 
