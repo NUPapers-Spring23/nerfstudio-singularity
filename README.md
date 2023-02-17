@@ -4,6 +4,8 @@ This repository contains the [Singularity file definitions](https://docs.sylabs.
 
 The goal is to provide an isolated environment where Nerfstudio can be used to render NeRFs from images. Nerfstudio will also allow you to render point clouds and videos from the trained and rendered NeRFs.
 
+You can find logs from COLMAP processing and NeRF model training we conducted on Compute Canada [here](https://github.com/NUPapers-Spring23/nerfstudio-singularity/tree/main/compute-canada-runs). Some screenshots from the generated point clouds can be found [here](https://drive.google.com/drive/folders/1YfBj4IUEOVzwN7zbV7W5ibp_jm1Gz4ew?usp=sharing).
+
 - [Nerf Studio Singularity Container and Pipeline](#nerf-studio-singularity-container-and-pipeline)
   - [Getting Started](#getting-started)
     - [Gotchas and other things you should be aware of](#gotchas-and-other-things-you-should-be-aware-of)
@@ -18,7 +20,7 @@ The goal is to provide an isolated environment where Nerfstudio can be used to r
 
 ## Getting Started
 
-There's an already built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on the Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
+There's an already-built Singularity container stored in the Cedar and Graham clusters, on Compute Canada. The container can also be found on the Northeastern University Discovery cluster. This way you can skip building the image yourself. However, if you want to customize the image, check the [Building the image](#building-the-image) section.
 
 The containers can be found at:
 * Compute Canada: `/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif`
