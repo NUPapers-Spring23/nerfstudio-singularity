@@ -20,6 +20,8 @@ function usage {
     echo "                          (example: /scratch/wribas/nerfstudio/data/)"
     echo "  --output string         the directory to store the trained model and all nerfstudio output files"
     echo "                          (example: /scratch/wribas/nerfstudio/outputs)"
+    echo "  --mode string           OPTIONAL - default is nerfacto - the training mode to utilize. Any value supported by nerfstudio is accepted"
+    echo "                          (example: nerfacto, instant-ngp, mipnerf, tensorf, etc)"
     echo "  --container string      OPTIONAL - the path to the nerfstudio singularity container. By default it loads Weder's container on Compute Canada"
     echo "                          (example: /scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif)"
     echo "  --help                  displays this help"
@@ -40,6 +42,10 @@ do
             ;;
         --output)
             output_path=$2
+            shift 2
+            ;;
+        --mode)
+            training_mode=$2
             shift 2
             ;;
         --container)
@@ -69,6 +75,11 @@ then
     die "Missing required parameters --output"
 fi
 
+if [ -z "$training_mode" ]
+then
+    training_mode="nerfacto"
+fi
+
 if [ -z "$nerfstudio_container" ]
 then
     nerfstudio_container="/scratch/wribas/nerfstudio/nerfstudio-cuda-11-3.sif"
@@ -82,4 +93,4 @@ fi
 module load singularity
 module load cuda
 
-singularity exec --bind $data_path:/opt/nerfstudio-nu-papers/data --bind $output_path:/opt/nerfstudio-nu-papers/outputs ${nerfstudio_container} bash -c "cd /opt/nerfstudio-nu-papers && . venv/bin/activate && ns-train nerfacto --data data/ --output-dir outputs/"
+singularity exec --bind $data_path:/opt/nerfstudio-nu-papers/data --bind $output_path:/opt/nerfstudio-nu-papers/outputs ${nerfstudio_container} bash -c "cd /opt/nerfstudio-nu-papers && . venv/bin/activate && ns-train $training_mode --data data/ --output-dir outputs/"
