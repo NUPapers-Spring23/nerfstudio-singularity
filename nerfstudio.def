@@ -41,6 +41,9 @@ From: ubuntu:20.04
     export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 %runscript
+    export PATH=/usr/local/cuda-11.3/bin${PATH:+:${PATH}}
+    export CUDA_HOME=/usr/local/cuda-11.3/
+
     # Nerfstudio dependencies are in a Python virtual environment.
     cd /opt/nerfstudio-nu-papers
     . venv/bin/activate
